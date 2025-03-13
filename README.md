@@ -7,7 +7,13 @@ You can:
  - Move the players between the fields
 ## How to build and run on your system
 This game is written in the Python programming language and the tkinter, turtle, pygame_menu libraries.
-
+You can download the zip file and run the ```Football_Buttons.py``` code
+Compatible with ```all platforms```
+## Prerequisites
+```
+pip install pygame
+pip install pygame.muse
+```
 
 # Tic Tac Toe Game
 ## Game Info
