@@ -1,23 +1,23 @@
-# کتاب خانه های مورد نیاز
+# Required libraries
 from pygame import *
 from pygame_menu import *
 from pygame_menu.themes import *
 from turtle import *
 from tkinter.messagebox import *
-# کنترل تنظیمات
+# Control settings
 from ControlSetting import *
 
-# نمایش پیغامی درصفحه ای جدید
+# Display a message on a new page
 def show_confirmation(Title,Message):
     return showinfo(Title,Message)
 
-# نوشتن پیام روی صفحه
+# Write a message on the screen
 def message(msg, screen, color,width,height,size,F="bahnschrift"):
         font_style = font.SysFont(F, size)
         mesg = font_style.render(msg, True, color)
         screen.blit(mesg, [width, height])
 
-# پرسش سوال
+# Ask a question
 def Qoiz(Title, Qoez, P, Format:type):
     PP = textinput(Title,Qoez)
     if Format == str :
@@ -42,7 +42,7 @@ def Qoiz(Title, Qoez, P, Format:type):
         return askyesno(Title, Qoez)
     else: return "Noformat"
 
-# ساخت پشت زمینه
+# Making the background
 def Backgrund(screen_x,screen_y,screen,COLOR1 = (255, 0, 0),COLOR2 = (0, 0, 255)):
     X = screen_x+300
     for y in range(X):
@@ -53,14 +53,14 @@ def Backgrund(screen_x,screen_y,screen,COLOR1 = (255, 0, 0),COLOR2 = (0, 0, 255)
         )
         draw.line(screen, color, (0, y), (screen_y, y))
 
-# تابعی برای ساخته دکمه
+# Function to create a button
 def Draw_Get_Bottons_for_Start(screen,button,String,X = 25,Y=15,Col=(255, 255, 255),FONT="bahnschrift", size=25):
-    # نمایش دکمه "شروع مجدد"
+    # Show "Restart" button
     draw.rect(screen, (255, 0, 0), button)
-    # تعریف مستطیل برای دکمه "شروع مجدد"
+    # Define a rectangle for the "restart" button
     message(String,screen, Col, button.x+X, button.y+Y,size,FONT)
 
-# تابعی برای چک کردن اینکه ایا بازیکن ها بهم برخورد کرده اند یا خیر
+# A function to check if players have collided or not
 def Check(Rect1:Rect , Rect2:Rect):
     Hit = [] # U , D , L , R
 
@@ -86,7 +86,7 @@ def Check(Rect1:Rect , Rect2:Rect):
 
     return Hit
 
-# تابعی برای رسم زمین فورتبال
+# A function to draw a football field
 def draw_soccer_field(screen):
     draw.rect(screen, white, (20, 30, screen.get_size()[0]-40, screen.get_size()[1]-40), 2)
     draw.circle(screen, white, (screen.get_size()[0]/2, screen.get_size()[1]/2), 100, 2)
@@ -94,7 +94,7 @@ def draw_soccer_field(screen):
                              (screen.get_size()[0]/2, screen.get_size()[1]-10), 2)
     draw.circle(screen, white, (screen.get_size()[0]/2, screen.get_size()[1]/2), 10)
 
-# تابعی برای ذخیره تنظیمات ویرایش شده
+# A function to save edited settings
 def Save_Setting ():
     global Is_Full_Screen_var,Color_Grupe_one_var,Color_Grupe_two_var,setting_Menu
 
@@ -108,7 +108,7 @@ def Save_Setting ():
         if key == "Color Grupe two" : Edit_Setting(b"Color Grupe two", str(settingsData[key][0][0]))
     exit(0)
 
-# نمایش تنظیمات
+# Show settings
 def Setting():
     global Is_Full_Screen_var,Color_Grupe_one_var,Color_Grupe_two_var,Settings,setting_Menu
     screen = display.set_mode((400, 574))
@@ -121,7 +121,7 @@ def Setting():
     Color_Grupe_two_var = Settings[b"Color Grupe two"]
 
     Seve_button = Rect(93 , 500, 240, 50)
-    # رنگ های مجاز برای تیم ها
+    # Allowed colors for teams
     COLOR_GROGS =  [("black","black") ,
                     ("red","red"),
                     ("blue","blue"),
