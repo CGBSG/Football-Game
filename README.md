@@ -1,3 +1,9 @@
+# F
+
+## How to build and run on your system
+This game is written in the Python programming language and the tkinter, turtle, pygame_menu libraries.
+
+
 # Tic Tac Toe Game
 ## Game Info
  ```text
