@@ -1,5 +1,5 @@
 # Tic Tac Toe Game
-##         Game Info
+## Game Info
  ```text
 Tic-tac-toe is a paper-and-pencil game for two
 players who take turns marking the spaces in a
