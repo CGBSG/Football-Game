@@ -1,13 +1,13 @@
-# کتاب خانه های مورد نیاز
+# Required libraries
 from pygame import *
 from pygame.mouse import *
-# سه کتابخانه دست نوشته که در فایل هایی که کنار این فایل قرار گرفت اند وجود دارند
-# این سه کتابخانه توابع ، تنظیمات و صفحه اجرای بازی قرار دارند
-# توابع
+# Three handwritten libraries that are in the files next to this file
+# These three libraries are the functions, settings, and game execution page
+# Functions
 from definitions import *
-# کنترل تنظیمات
+# Control Settings
 from ControlSetting import *
-# صفحه بازی
+# Game Page
 from Game import *
 import sys
 
@@ -53,7 +53,7 @@ screen_x = screen_x/2-100
 display.set_caption("             Football Buttons")
 screen = display.set_mode((screen_x, screen_y),SCREEN_SIZE)
 
-# تعریف مستطیل برای دکمه
+# Define a rectangle for the button
 Start_button   = Rect(screen_x/3-40 , screen_y/2+10, 260, 50)
 Setting_button = Rect(screen_x/3-40 , screen_y/2+75, 260, 50)
 Exit_button    = Rect(screen_x/3-40 , screen_y/2+145, 260, 50)
@@ -65,11 +65,11 @@ while True :
         if j.type == MOUSEBUTTONDOWN:
             mouse_pos = mouse.get_pos()
             if Start_button.collidepoint(mouse_pos):
-                # صفحه بازی
+                # Game page
                 from Game import *
                 Restart(True)
             elif Setting_button.collidepoint(mouse_pos):
-                # کنترل تنظیمات
+                # Control settings
                 from definitions import *
                 Setting()
             elif Exit_button.collidepoint(mouse_pos):
@@ -86,4 +86,4 @@ while True :
     message(  "To The Game"   ,screen, SUN_TOP, screen_x/2-90 , 120,50,"MISTRAL")
     message("Football Buttons",screen, SKY_TOP, screen_x/2-130 , 200,50,"MISTRAL")
     display.update()
-# پایان
+# The End
