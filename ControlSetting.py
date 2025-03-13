@@ -1,34 +1,34 @@
-# کتابخانه برای کنترل سیستم
+# Library for system control
 import os
-# کتابخانه ای برای پیدا کردن اندازه صفحه سیستم
+# A library to find the system page size
 import ctypes
-# کتابخانه برای دریافت برخی اطلاعات پیش فرض کتابخانه پای گیم
+# Library to get some default information from the PiGame library
 from pygame import *
 
-# دریافت اندازه صفحه کامپیوتر و ساخت تصویر بازی کوچک تر از صفحه سیستم
+# Get the computer screen size and make the game image smaller than the system screen
 screen_x = ctypes.windll.user32.GetSystemMetrics(0)-100
 screen_y = ctypes.windll.user32.GetSystemMetrics(1)-100
-# تابعی برای تغییر تنظیمات بازی 
-# مثلا رنگ گروه 1 را تغییر دهیم
+# A function to change game settings
+# For example, change the color of group 1
 def Edit_Setting(Set_valiue:bytes, New):
     global Settings
-    # پیدا کردن پوشه اکانت بازیکن
+    # Find the player account folder
     SystemAdress = os.path.expanduser('~')
 
-    # ساخت و خواندن محتوات فایلی برای تنظیمات در سیستم
+    # Create and read the contents of a file for system settings
     All_Setting = open(SystemAdress+"/Football.set","w")
     Settings[Set_valiue] = New
     All_Setting.write("Is Full Screen:"+Settings[b"Is Full Screen"]+
                       "\nColor Grupe one:"+Settings[b"Color Grupe one"]+
                       "\nColor Grupe two:"+Settings[b"Color Grupe two"])
 
-# تابعی برای تغییر تنظیمات بازی 
-# مثلا رنگ صورتی را اضافه کنیم
+# A function to change game settings
+# For example, add the color pink
 def Add_Color(Color:str):
-    # پیدا کردن پوشه اکانت بازیکن
+# Find the player's account folder
     SystemAdress = os.path.expanduser('~')
 
-    # ساخت و خواندن محتوات فایلی برای رنگ ها در سیستم
+    # Create and read the contents of a file for colors in the system
     try:
         All_Color =  open(SystemAdress+"/Football.col","r")
     except :
@@ -40,16 +40,16 @@ def Add_Color(Color:str):
         Col.close()
     All_Color = open(SystemAdress+"/Football.col","a")
     All_Color.write("\n"+color)
-# تابعی برای برگرداندن تنظیمات به حالت اولیه
+# A function to restore the settings to their original state
 def Reset_Setting():
     Set = open(SystemAdress+"/Football.set","w")
     Set.write("Is Full Screen:No\nColor Grupe one:red\nColor Grupe two:blue")
     Set.close()
     exit(0)
 
-# پیدا کردن پوشه اکانت بازیکن
-SystemAdress = os.path.expanduser('~')
-# ساخت و خواندن محتوات فایلی برای تنظیمات در سیستم
+# Find the player's account folder
+SystemAddress = os.path.expanduser('~')
+# Create and read the contents of a file for system settings
 try:
     All_Setting = open(SystemAdress+"/Football.set","r")
 except :
@@ -58,7 +58,7 @@ except :
     Set.close()
     All_Setting = open(SystemAdress+"/Football.set","r")
 
-# ساخت و خواندن محتوات فایلی برای رنگ ها در سیستم
+# Create and read the contents of a file for colors in the system
 try:
     All_Color =  open(SystemAdress+"/Football.col","r")
 except :
@@ -70,16 +70,16 @@ except :
     Col.close()
     All_Color = open(SystemAdress+"/Football.col","r")
 
-# ساخت متغیری برای ریختن محتویات فایل تنظیمات
+# Create a variable to dump the contents of the configuration file
 Settings = {b"Is Full Screen":"No Data",
             b"Color Grupe one":"No Data",
             b"Color Grupe two":"No Data"}
-# جدا کردن تنظیمات ذخیره شده
+# Detach saved settings
 Check_Settinges = []
 for Set in All_Setting:
     Ting = Set.strip().split(':')
     Check_Settinges.append(Ting)
-# قرار دادن نتظیمات تفکیک شده در متغیر هایی
+# Putting separated settings into variables
 try :
     Settings[b"Is Full Screen"] = Check_Settinges[0][1]
     Settings[b"Color Grupe one"] = Check_Settinges[1][1]
@@ -87,7 +87,7 @@ try :
 except :
     exit()
 
-# اعمال تنظیمات ذخیره شده
+# Apply saved settings
 SCREEN_SIZE = RESIZABLE
 Is_Full_Screen = False
 if   Settings[b"Is Full Screen"] == "Yes" :
@@ -99,9 +99,8 @@ elif Settings[b"Is Full Screen"] == "No"  :
 elif Settings[b"Is Full Screen"] == "No Data"  : exit()
 else : exit()
 
-
-# ساخت متغیر هایی و پر کردن انها با اطلاعات درون فایل رنگ ها قرار دارند
-# فایل رنگ ها Football.col است
+# Create variables and fill them with information from the colors file
+# The colors file is Football.col
 Colors = []
 for Col in All_Color:
     Colors.append(Col.strip().split('\n'))
